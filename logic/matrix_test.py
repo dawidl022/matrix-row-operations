@@ -81,7 +81,15 @@ class MatrixTest(unittest.TestCase):
             ], m.matrix
         )
 
-    def test_add_one_column_into_another_without_multiplication(self):
+    def test_multiply_by_zero_raises_error(self):
+        m = Matrix([
+            [0, 3, 5],
+            [1, 2, 3],
+        ])
+
+        self.assertRaises(ValueError, lambda: m.multiply_row(1, 0))
+
+    def test_add_one_row_into_another_without_multiplication(self):
         m = Matrix([
             [1, 2, 3],
             [3, Fraction(1, 2), 6]
@@ -96,7 +104,7 @@ class MatrixTest(unittest.TestCase):
             ], m.matrix
         )
 
-    def test_add_one_column_into_another_with_multiplication(self):
+    def test_add_one_row_into_another_with_multiplication(self):
         m = Matrix([
             [1, 2, 3],
             [3, Fraction(1, 2), 6]

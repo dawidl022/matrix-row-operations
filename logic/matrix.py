@@ -9,6 +9,9 @@ class Matrix:
         self.matrix[row_a], self.matrix[row_b] = self.matrix[row_b], self.matrix[row_a]
 
     def multiply_row(self, row: int, coefficient: int | Fraction):
+        if coefficient == 0:
+            raise ValueError(
+                "multiplying a row by 0 would break the matrix row equivalence property")
         self.matrix[row] = [el * coefficient for el in self.matrix[row]]
 
     def add_row_to_row(self, source_row: int, target_row: int, source_coefficient: int | Fraction):
