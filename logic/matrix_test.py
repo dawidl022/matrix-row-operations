@@ -119,6 +119,46 @@ class MatrixTest(unittest.TestCase):
             ], m.matrix
         )
 
+    def test_determinant_for_empty_matrix_is_one(self):
+        m = Matrix([])
+        self.assertEqual(1, m.determinant)
+
+    def test_determinant_throws_exception_for_non_square_matrix(self):
+        m = Matrix([
+            [1, 2, 3],
+            [3, Fraction(1, 2), 6]
+        ])
+
+        self.assertRaises(ValueError, lambda: m.determinant)
+
+    def test_determinant_of_1x1_matrix_is_the_number_itself(self):
+        m = Matrix([[2]])
+        self.assertEqual(2, m.determinant)
+
+    def test_determinant_of_2x2_matrix(self):
+        m = Matrix([
+            [-2, -6],
+            [-7, 5]
+        ])
+        self.assertEqual(-52, m.determinant)
+
+    def test_determinant_of_3x3_matrix(self):
+        m = Matrix([
+            [4, 2, 1],
+            [-2, -6, 3],
+            [-7, 5, 0]
+        ])
+        self.assertEqual(-154, m.determinant)
+
+    def test_determinant_of_4x4_matrix(self):
+        m = Matrix([
+            [1, 2, 3, 4],
+            [4, 5, 6, 7],
+            [8, 9, 10, 11],
+            [12, 13, 14, 15]
+        ])
+        self.assertEqual(0, m.determinant)
+
 
 if __name__ == "__main__":
     unittest.main()
